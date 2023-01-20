@@ -7,18 +7,31 @@ if (isset($_SESSION['admin_name']))
 else
     include "user_navigation.php";
 ?>
+
 <?php
-if (isset($_GET['m_cat'])) {
-    $med_cat = $_GET['m_cat'];
+if (isset($_GET['m_name'])) {
+    $med_name = $_GET['m_name'];
 }
 ?>
 
 <form action="" method="post">
     <center>
         <hr>
-        <h4><?php echo "This are Records of   $med_cat  Medicines."; ?></h4>
+        <h4>Search Result</h4>
         <hr>
     </center>
+    <div class="p-2">
+        <div class="row height d-flex align-items-center">
+            <div class="col-md-6">
+                <div class="search">
+                    <i class="fa fa-search"></i>
+                    <input name="med" type="text" class="form-control" placeholder="Search Medicine">
+                    <button name="search" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -28,12 +41,13 @@ if (isset($_GET['m_cat'])) {
                 <th>Category</th>
                 <th>Brand</th>
                 <th>Available Quantity</th>
+                <th>Quantity Requested</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <?php
-                $query = "SELECT * FROM medicines WHERE med_category = '$med_cat'";
+                $query = "SELECT * FROM medicines WHERE med_name LIKE '%$med_name%' ORDER BY med_id DESC";
                 $select_posts = mysqli_query($conn, $query);
                 while ($row = mysqli_fetch_assoc($select_posts)) {
                     $med_id = $row['med_id'];
@@ -42,8 +56,11 @@ if (isset($_GET['m_cat'])) {
                     $med_date = $row['med_expiryDate'];
                     $med_brand = $row['med_brand'];
                     $med_availableQuant = $row['med_availableQuant'];
+                    $med_requestedQuant = $row['med_requestedQuant'];
+                    $med_status = $row['med_status'];
 
                 ?>
+
                 <?php
                     echo "<td></td>";
                     echo "<td>{$med_name}</td>";
@@ -51,6 +68,7 @@ if (isset($_GET['m_cat'])) {
                     echo "<td>{$med_category}</td>";
                     echo "<td>{$med_brand}</td>";
                     echo "<td>{$med_availableQuant}</td>";
+                    echo "<td>{$med_requestedQuant}</td>";
                     echo "</tr>";
                 } ?>
         </tbody>

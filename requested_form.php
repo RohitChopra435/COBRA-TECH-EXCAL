@@ -22,15 +22,26 @@ if (isset($_GET['m_id'])) {
 if (isset($_POST['submit'])) {
     $quant = $_POST['quant'];
     if ($quant > $med_availableQuant || $quant > 30) {
-        echo "<center><h5>Request failed. </h5></center>";
+        echo "
+        <script>
+        setTimeout(()=>window.location.href='/users_medicines.php',1000);
+        </script>
+        <center><h5>Request failed. Over the Limit 30.</h5></center>
+        
+        ";
     } else {
 
         $query = "UPDATE medicines SET med_requestedQuant = med_requestedQuant + $quant WHERE med_id = $the_med_id";
         $the_request_query = mysqli_query($conn, $query);
         $query = "UPDATE medicines SET med_status = 1 WHERE med_id = $the_med_id";
         $the_request_query = mysqli_query($conn, $query);
-        echo "<center><h5>Request Created. </h5></center>";
-
+        echo "
+        <script>
+        setTimeout(()=>window.location.href='/users_medicines.php',1000);
+        </script>
+        <center><h5>Request Created. </h5></center>
+        
+        ";
         $username = $_SESSION['user_name'];
         $query = "SELECT * FROM user_form WHERE username = '{$username}'";
         $select_user_query = mysqli_query($conn, $query);

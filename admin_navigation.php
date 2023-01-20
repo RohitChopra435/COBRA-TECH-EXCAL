@@ -17,7 +17,7 @@ if ($_SESSION['admin_name']) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active"> Welcome <?php echo $username; ?></a>
+                    <a style=" font-size: 25px color: #013;;" class="nav-link active"> Welcome <?php echo $username; ?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " aria-current="page" href="/homepage.php">Home</a>
@@ -27,6 +27,12 @@ if ($_SESSION['admin_name']) {
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin_medicines.php">Medicine </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin_req_medicines.php">Requested Medicine </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="padding-left:0px" href="/delivery_medicine.php">Assign Delivery</a>
                 </li>
 
             </ul>

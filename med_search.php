@@ -8,40 +8,18 @@ else
     include "user_navigation.php";
 ?>
 <?php
-if (isset($_POST['search'])) {
-    $med_name = $_POST['med'];
-    header("Location: med_search.php?m_name=$med_name");
+if (isset($_GET['m_name'])) {
+    $med_name = $_GET['m_name'];
 }
-
-
-
 ?>
+
+
 <form action="" method="post">
-    <hr>
-    <div id="bulkOptionsContainer" class="col-xs-4">
-
-        <select class="form-control" name="bulk_options" id="">
-            <option value="">Select Options</option>
-            <option value="approve">Approve</option>
-            <option value="unapprove">Unapprove</option>
-        </select>
-        <input type="submit" name="submit" class="btn btn-success" value="Apply">
-    </div>
-
-    <div class="p-2">
-        <div class="row height d-flex align-items-center">
-            <div class="col-md-6">
-                <div class="search">
-                    <i class="fa fa-search"></i>
-                    <input name="med" type="text" class="form-control" placeholder="Search Medicine">
-                    <button name="search" class="btn btn-primary">Search</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
+    <center>
+        <hr>
+        <h5>Search medicines by '<?php echo $med_name; ?>' </h5>
+        <hr>
+    </center>
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -58,7 +36,7 @@ if (isset($_POST['search'])) {
         <tbody>
             <tr>
                 <?php
-                $query = "SELECT * FROM medicines ORDER BY med_id DESC";
+                $query = "SELECT * FROM medicines WHERE med_name LIKE '%$med_name%' ORDER BY med_id DESC";
                 $select_posts = mysqli_query($conn, $query);
                 while ($row = mysqli_fetch_assoc($select_posts)) {
                     $med_id = $row['med_id'];

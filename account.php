@@ -60,7 +60,7 @@ if (isset($_POST['update'])) {
       <h4>Username</h4>
       <input type="text" name="name" value="<?php echo $username; ?>">
       <h4>User_Password</h4>
-      <input type="text" name="password" value="<?php echo $user_password; ?>">
+      <input type="password" name="password" value="<?php echo $user_password; ?>">
       <h4>User_Email</h4>
       <input type="email" name="email" value="<?php echo $user_email; ?>">
       <!-- <h4></h4> -->

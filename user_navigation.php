@@ -31,7 +31,7 @@ $username = $_SESSION['user_name'];
             </ul>
 
 
-            <a href="logout.php"><button class="btn btn-danger" button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signUpModal">log out </button></a>
+            <a href="logout.php"><button class="btn btn-danger text-nowrap" button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signUpModal">log out </button></a>
         </div>
     </div>
     </div>

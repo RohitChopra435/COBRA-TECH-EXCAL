@@ -25,8 +25,6 @@ if (isset($_POST['add'])) {
 
     $result = mysqli_query($conn, $query);
     $prev_Id = mysqli_insert_id($conn);
-    // $_SESSION['{$prev_Id+1}'] = array('0');
-    // $_SESSION['request_amount'] = array('0');
 }
 
 ?>
@@ -43,15 +41,16 @@ if (isset($_POST['add'])) {
             <option value="">Select Category</option>
             <option value="Antibiotics">Antibiotics</option>
             <option value="Antiseptic">Antiseptic</option>
-            <option value="Antiseptic">Antiseptic</option>
-            <option value="Antiseptic">Antiseptic</option>
+            <option value="Antipyretics">Antipyretics</option>
+            <option value="Mood stabilizers">Mood stabilizers</option>
+            <option value="Stimulant">Stimulant</option>
+            <option value="Analgesic">Analgesic</option>
         </select>
-        <input type="text" name="batchId" required placeholder="Batch id">
         <input type="text" name="brand" required placeholder="Brand">
-        <input type="number" name="quantity" required placeholder="Amount">
+        <input type="number" name="quantity" required placeholder="Quantity">
         <input type="text" name="pickUpAddress" required placeholder="Address">
         <input type="submit" name="add" value="Add" class="form-btn">
-        <p> <a href="#">Close</a></p>
+        <p> <a href="homepage.php">Close</a></p>
     </form>
 
 </div>

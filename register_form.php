@@ -69,9 +69,8 @@ if (isset($_POST['submit'])) {
          <input type="password" name="password" required placeholder="enter your password">
          <input type="password" name="cpassword" required placeholder="confirm your password">
          <select name="user_type">
-            <option value="admin">Admin</option>
-            <option value="receiver">Receiver</option>
-            <option value="donor">Donor</option>
+            <option value="user">User</option>
+            <option value="delivery agent">Delivery Agent</option>
          </select>
          <input type="submit" name="submit" value="register now" class="form-btn">
          <p>already have an account? <a href="login_form.php">login now</a></p>
