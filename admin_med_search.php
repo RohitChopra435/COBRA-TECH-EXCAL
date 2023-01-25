@@ -9,8 +9,8 @@ else
 ?>
 
 <?php
-if (isset($_GET['m_name'])) {
-    $med_name = $_GET['m_name'];
+if (isset($_GET['hint'])) {
+    $hint = $_GET['hint'];
 }
 ?>
 
@@ -20,17 +20,16 @@ if (isset($_GET['m_name'])) {
         <h4>Search Result</h4>
         <hr>
     </center>
-    <div class="p-2">
+    <!-- <div class="p-2">
         <div class="row height d-flex align-items-center">
             <div class="col-md-6">
-                <div class="search">
-                    <i class="fa fa-search"></i>
-                    <input name="med" type="text" class="form-control" placeholder="Search Medicine">
-                    <button name="search" class="btn btn-primary">Search</button>
+                <div class="search"> -->
+    <!-- <i class="fa fa-search"></i> -->
+    <!-- <button name="search" class="btn btn-primary">back</button>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <table class="table table-bordered table-hover">
         <thead>
@@ -47,7 +46,7 @@ if (isset($_GET['m_name'])) {
         <tbody>
             <tr>
                 <?php
-                $query = "SELECT * FROM medicines WHERE med_name LIKE '%$med_name%' ORDER BY med_id DESC";
+                $query = "SELECT * FROM medicines WHERE med_name LIKE '%$hint%' ORDER BY med_id DESC";
                 $select_posts = mysqli_query($conn, $query);
                 while ($row = mysqli_fetch_assoc($select_posts)) {
                     $med_id = $row['med_id'];
@@ -58,7 +57,6 @@ if (isset($_GET['m_name'])) {
                     $med_availableQuant = $row['med_availableQuant'];
                     $med_requestedQuant = $row['med_requestedQuant'];
                     $med_status = $row['med_status'];
-
                 ?>
 
                 <?php

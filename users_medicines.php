@@ -13,6 +13,9 @@ if (isset($_POST['search'])) {
     header("Location: med_search.php?m_name=$med_name");
 }
 
+?>
+<?php
+
 
 
 ?>
@@ -28,21 +31,45 @@ if (isset($_POST['search'])) {
         <input type="submit" name="submit" class="btn btn-success" value="Apply">
     </div>
 
-    <div class="p-2">
-        <div class="row height d-flex align-items-center">
-            <div class="col-md-6">
-                <div class="search">
-                    <i class="fa fa-search"></i>
-                    <input name="med" type="text" class="form-control" placeholder="Search Medicine">
-                    <button name="search" class="btn btn-primary">Search</button>
+    <table class="table table-bordered table-hover">
+        <div class="container">
+            <div class="search-bar">
+                <div id="select">
+                    <p id="selectText">All categories</p>
+                    <img src="./images/arrow.png">
+                    <ul id="list">
+                        <li class="options">All Categories</li>
+                        <li class="options">Antibiotics</li>
+                        <li class="options">Antiseptic</li>
+                        <li class="options">Antipyretics</li>
+                        <li class="options">Mood stabilizers</li>
+                        <li class="options">Stimulant</li>
+                        <li class="options">Analgesic</li>
+                    </ul>
                 </div>
+                <input id="inputField" type="text" placeholder="Search Medicine">
+                <button name="search" class="btn btn-primary">Search</button>
             </div>
         </div>
-    </div>
+        <script>
+            let select = document.getElementById("select");
+            let list = document.getElementById("list");
+            let selectText = document.getElementById("selectText");
+            let inputField = document.getElementById("inputField");
+            let options = document.getElementsByClassName("options");
+            select.onclick = function() {
+                list.classList.toggle("open");
+            }
+            for (option of options) {
+                option.onclick = function() {
+                    selectText.innerHTML = this.innerHTML;
+                    inputField.placeholder = "Search In " + selectText.innerHTML;
+                }
+            }
+        </script>
 
 
 
-    <table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th><input type="checkbox" id="selectAllBoxes"></th>

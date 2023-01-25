@@ -1,83 +1,25 @@
-<?php
+<?php include "header.php"; ?>
+<?php include "main_navigation.php"; ?>
 
-@include 'config.php';
+<div class="form-container">
 
-if (isset($_POST['submit'])) {
-
-    $email = $_POST['email'];
-    $pass = $_POST['password'];
-    $cpass = $_POST['cpassword'];
-    $name = $_POST['name'];
-    $pass = mysqli_real_escape_string($conn, $_POST['password']);
-    $cpass = mysqli_real_escape_string($conn, $_POST['cpassword']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-
-    $user_type = $_POST['user_type'];
-
-    $select = " SELECT * FROM user_form WHERE user_email = '$email' && user_password = '$pass' ";
-
-    $result = mysqli_query($conn, $select);
-
-    if (mysqli_num_rows($result) > 0) {
-
-        $error[] = 'user already exist!';
-    } else {
-
-        if ($pass != $cpass) {
-            $error[] = 'password not matched!';
-        } else {
-            $insert = "INSERT INTO user_form(username, user_email, user_password, user_type) VALUES('$name','$email','$pass','$user_type')";
-            mysqli_query($conn, $insert);
-            header('location:login_form.php');
-        }
-    }
-};
-
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>register form</title>
-
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css">
-
-</head>
-
-<body>
-
-    <div class="form-container">
-
-        <form action="" method="post">
-            <h3>confirm now</h3>
-            <?php
-            if (isset($error)) {
-                foreach ($error as $error) {
-                    echo '<span class="error-msg">' . $error . '</span>';
-                };
+    <form action="" method="post">
+        <h3>login now</h3>
+        <?php
+        if (isset($error)) {
+            foreach ($error as $error) {
+                echo '<span class="error-msg">' . $error . '</span>';
             };
-            ?>
-            <input type="text" name="name" required placeholder="enter your name">
-            <input type="email" name="email" required placeholder="enter your email">
-            <input type="password" name="password" required placeholder="enter your password">
-            <input type="password" name="cpassword" required placeholder="confirm your password">
-            <select name="user_type">
-                <option value="user">User</option>
-                <option value="delivery agent">Delivery Agent</option>
-            </select>
-            <input type="submit" name="submit" value="register now" class="form-btn">
-            <p>already have an account? <a href="login_form.php">login now</a></p>
-        </form>
+        };
+        ?>
+        <input type="email" name="email" required placeholder="enter your email">
+        <input type="password" name="password" required placeholder="enter your password">
+        <input type="submit" name="submit" value="login now" class="form-btn">
+        <p>don't have an account? <a href="register_form.php">register now</a></p>
+        <p> <a href="reset_form.php">forgot password?</a></p>
+    </form>
 
-    </div>
+</div>
 
-</body>
 
-</html>
+<?php include "footer.php"; ?>

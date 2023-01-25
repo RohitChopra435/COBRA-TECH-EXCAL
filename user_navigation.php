@@ -27,11 +27,10 @@ $username = $_SESSION['user_name'];
                 <li class="nav-item">
                     <a class="nav-link" href="/users_req_med.php">Requested Medicine </a>
                 </li>
-
+                <li class='nav-item'>
+                    <a class='nav-link ' href="logout.php"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signUpModal">log out </button></a>
+                </li>
             </ul>
-
-
-            <a href="logout.php"><button class="btn btn-danger text-nowrap" button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signUpModal">log out </button></a>
         </div>
     </div>
     </div>

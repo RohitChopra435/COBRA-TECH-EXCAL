@@ -1,15 +1,25 @@
 <?php session_start(); ?>
 <?php include "header.php"; ?>
+<?php include "config.php"; ?>
 <?php
 if (isset($_SESSION['admin_name']))
     include "admin_navigation.php";
 else
     include "user_navigation.php";
 ?>
-
 <?php
+if (!$_SESSION['profile']) {
 
-@include 'config.php';
+
+
+
+
+
+
+    header("Location: account.php?p_id=2");
+}
+?>
+<?php
 
 
 if (isset($_POST['add'])) {
@@ -17,11 +27,10 @@ if (isset($_POST['add'])) {
     $med_name = $_POST['name'];
     $med_expiryDate = date('Y-m-d', strtotime($_POST['expiredDate']));
     $med_category = $_POST['category'];
-    $med_batchId = $_POST['batchId'];
     $med_brand = $_POST['brand'];
     $med_quantity = $_POST['quantity'];
 
-    $query = " INSERT INTO medicines(med_name,med_expiryDate,med_category,med_batchId,med_brand,med_availableQuant,med_status) VALUES('{$med_name}','$med_expiryDate','{$med_category}','{$med_batchId}','{$med_brand}',$med_quantity,'Pending') ";
+    $query = " INSERT INTO medicines(med_name,med_expiryDate,med_category,med_brand,med_availableQuant,med_status) VALUES('{$med_name}','$med_expiryDate','{$med_category}','{$med_brand}',$med_quantity,'Pending') ";
 
     $result = mysqli_query($conn, $query);
     $prev_Id = mysqli_insert_id($conn);
@@ -47,7 +56,7 @@ if (isset($_POST['add'])) {
             <option value="Analgesic">Analgesic</option>
         </select>
         <input type="text" name="brand" required placeholder="Brand">
-        <input type="number" name="quantity" required placeholder="Quantity">
+        <input type="number" min="0" name="quantity" required placeholder="Quantity">
         <input type="text" name="pickUpAddress" required placeholder="Address">
         <input type="submit" name="add" value="Add" class="form-btn">
         <p> <a href="homepage.php">Close</a></p>

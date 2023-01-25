@@ -9,10 +9,43 @@ else
 ?>
 <?php
 if (isset($_POST['search'])) {
-    $med_name = $_POST['med'];
-    header("Location: admin_med_search.php?m_name=$med_name");
+    $hint = $_POST['med'];
+    header("Location: admin_med_search.php?hint=$hint&p_id=3");
 }
 ?>
+<div class="container">
+    <div class="search-bar">
+        <div id="select">
+            <p id="selectText">All categories</p>
+            <img src="./images/arrow.png">
+            <ul id="list">
+                <li class="options">All Categories</li>
+                <li class="options">Electronics</li>
+                <li class="options">Furniture</li>
+                <li class="options">Sports</li>
+                <li class="options">Fashion</li>
+            </ul>
+        </div>
+        <input id="inputField" type="text" placeholder="Search Medicine">
+        <button name="search" class="btn btn-primary">Search</button>
+    </div>
+</div>
+<script>
+    let select = document.getElementById("select");
+    let list = document.getElementById("list");
+    let selectText = document.getElementById("selectText");
+    let inputField = document.getElementById("inputField");
+    let options = document.getElementsByClassName("options");
+    select.onclick = function() {
+        list.classList.toggle("open");
+    }
+    for (option of options) {
+        option.onclick = function() {
+            selectText.innerHTML = this.innerHTML;
+            inputField.placeholder = "Search In " + selectText.innerHTML;
+        }
+    }
+</script>
 
 <form action="" method="post">
     <center>
@@ -20,17 +53,7 @@ if (isset($_POST['search'])) {
         <h4>Medicines Records List</h4>
         <hr>
     </center>
-    <div class="p-2">
-        <div class="row height d-flex align-items-center">
-            <div class="col-md-6">
-                <div class="search">
-                    <i class="fa fa-search"></i>
-                    <input name="med" type="text" class="form-control" placeholder="Search Medicine">
-                    <button name="search" class="btn btn-primary">Search</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <table class="table table-bordered table-hover">
         <thead>

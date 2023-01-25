@@ -17,6 +17,18 @@ if (isset($_GET['m_id'])) {
     }
 }
 ?>
+<?php
+if (!$_SESSION['profile']) {
+
+
+
+
+
+
+
+    header("Location: account.php?p_id=2");
+}
+?>
 
 <?php
 if (isset($_POST['submit'])) {
@@ -76,6 +88,4 @@ if (isset($_POST['submit'])) {
 
 </div>
 
-</body>
-
-</html>
+<?php include "footer.php"; ?>

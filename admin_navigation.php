@@ -1,45 +1,100 @@
 <?php
 if ($_SESSION['admin_name']) {
     $username = $_SESSION['admin_name'];
-} else if ($_SESSION['receiver_name']) {
-    $username = $_SESSION['receiver_name'];
+} else if ($_SESSION['user_name']) {
+    $username = $_SESSION['user_name'];
 } else {
-    $username = $_SESSION['donor_name'];
+    $username = $_SESSION['delivery_name'];
 }
 
 ?>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
+<?php
+if (isset($_GET['p_id'])) {
+    $p_id = $_GET['p_id'];
+} else {
+    $p_id = 0;
+}
+?>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class=" container-fluid">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a style=" font-size: 25px color: #013;;" class="nav-link active"> Welcome <?php echo $username; ?></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="/homepage.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/account.php">Account</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin_medicines.php">Medicine </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin_req_medicines.php">Requested Medicine </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="padding-left:0px" href="/delivery_medicine.php">Assign Delivery</a>
-                </li>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- <li class="nav-item">
+                        <img src="/images/logo.png" alt="img" class="logo" width="2" height="2">
+                    </li> -->
+                    <li class="nav-item">
+                        <a style=" font-size: 25px color: #013;;" class="nav-link"> Welcome <?php echo $username; ?></a>
+                    </li>
+                    <?php
+                    if ($p_id == 1) {
 
-            </ul>
+                        echo "<li class='nav-item'>
+                        <a class='nav-link active' aria-current='page' href='/index.php?p_id=1'>Home</a>
+                    </li>";
+                    } else {
+                        echo "<li class='nav-item'>
+                    <a class='nav-link' aria-current='page' href='/index.php?p_id=1'>Home</a>
+                </li>";
+                    }
+                    //     if ($p_id == 2) {
+                    //         echo "<li class='nav-item'>
+                    //        <a class='nav-link active' href='/account.php?p_id=2'>Account</a>
+                    //    </li>";
+                    //     } else {
+                    //         echo "<li class='nav-item'>
+                    //        <a class='nav-link ' href='/account.php?p_id=2'>Account</a>
+                    //    </li>";
+                    //     }
+                    if ($p_id == 3) {
+                        echo "<li class='nav-item'>
+                    <a class='nav-link active' href='/admin_medicines.php?p_id=3'>Medicine </a>
+                </li>";
+                    } else {
+                        echo "<li class='nav-item'>
+                    <a class='nav-link ' href='/admin_medicines.php?p_id=3'>Medicine </a>
+                </li>";
+                    }
+                    if ($p_id == 4) {
+                        echo "<li class='nav-item'>
+                    <a class='nav-link active' href='/admin_req_medicines.php?p_id=4'>Requested Medicine </a>
+                </li>";
+                    } else {
+                        echo "<li class='nav-item'>
+                    <a class='nav-link ' href='/admin_req_medicines.php?p_id=4'>Requested Medicine</a>
+                </li>";
+                    }
+                    if ($p_id == 5) {
+                        echo "<li class='nav-item'>
+                    <a class='nav-link active' href='/delivery_medicine.php?p_id=5'>Assign Delivery </a>
+                </li>";
+                    } else {
+                        echo "<li class='nav-item'>
+                    <a class='nav-link ' href='/admin_med_records.php?p_id=5'>Medicines Record</a>
+                </li>";
+                    }
+                    if ($p_id == 6) {
+                        echo "<li class='nav-item'>
+                    <a class='nav-link active' href='/delivery_medicine.php?p_id=6'>Assign Delivery </a>
+                </li>";
+                    } else {
+                        echo "<li class='nav-item'>
+                    <a class='nav-link ' href='/delivery_medicine.php?p_id=6'>Assign Delivery</a>
+                </li>";
+                    }
+                    echo "<li class='nav-item'>
+                    <a href='logout.php' class='nav-link '><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#signUpModal'>log out </button></a>
+                </li>";
+                    ?>
 
+                </ul>
 
-            <a href="logout.php"><button class="btn btn-danger" button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signUpModal">log out </button></a>
+            </div>
         </div>
-    </div>
-    </div>
+</div>
 </nav>
+</div>
