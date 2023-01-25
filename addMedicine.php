@@ -7,18 +7,7 @@ if (isset($_SESSION['admin_name']))
 else
     include "user_navigation.php";
 ?>
-<?php
-if (!$_SESSION['profile']) {
 
-
-
-
-
-
-
-    header("Location: account.php?p_id=2");
-}
-?>
 <?php
 
 
@@ -34,6 +23,15 @@ if (isset($_POST['add'])) {
 
     $result = mysqli_query($conn, $query);
     $prev_Id = mysqli_insert_id($conn);
+
+    $username = $_SESSION['user_name'];
+    $query = "SELECT user_id FROM user_form WHERE username = '$username'";
+    $run = mysqli_query($conn, $query);
+    $row = mysqli_fetch_array($run);
+    $user_id = $row['user_id'];
+
+    $the_query = "INSERT INTO order_list(order_med_Id,order_user_Id,quant_order,order_status,order_type) VALUES($prev_Id,$user_id,$med_quantity,'Pending','PickUp')";
+    $result = mysqli_query($conn, $the_query);
 }
 
 ?>

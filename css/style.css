@@ -268,7 +268,7 @@ ul {
 .footer {
   background-color: #24262b;
   padding: 70px 0;
-  margin-top: 300px;
+  /* margin-top: 00px; */
 }
 
 .footer-col {

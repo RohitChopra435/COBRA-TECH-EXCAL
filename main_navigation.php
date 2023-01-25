@@ -8,16 +8,8 @@ if (isset($_GET['p_id'])) {
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class=" container-fluid">
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- <li class="nav-item">
-                        <img src="/images/logo.png" alt="img" class="logo" width="2" height="2">
-                    </li> -->
-
                     <?php
                     if ($p_id == 1) {
 
@@ -47,31 +39,14 @@ if (isset($_GET['p_id'])) {
                     <a class='nav-link ' href='/whatwedo.php?p_id=3'>WHAT WE DO </a>
                 </li>";
                     }
+
                     if ($p_id == 4) {
                         echo "<li class='nav-item'>
-                    <a class='nav-link active' href='/donate_medicines.php?p_id=4'>DONATE MEDICINES </a>
+                    <a class='nav-link active' href='/contactus.php?p_id=4'>CONTACT US </a>
                 </li>";
                     } else {
                         echo "<li class='nav-item'>
-                    <a class='nav-link ' href='/donate_medicines.php?p_id=4'>DONATE MEDICINES</a>
-                </li>";
-                    }
-                    if ($p_id == 5) {
-                        echo "<li class='nav-item'>
-                    <a class='nav-link active' href='/donations.php?p_id=5'>DONATIONS </a>
-                </li>";
-                    } else {
-                        echo "<li class='nav-item'>
-                    <a class='nav-link ' href='/donations.php?p_id=5'>DONATIONS</a>
-                </li>";
-                    }
-                    if ($p_id == 6) {
-                        echo "<li class='nav-item'>
-                    <a class='nav-link active' href='/contactus.php?p_id=6'>CONTACT US </a>
-                </li>";
-                    } else {
-                        echo "<li class='nav-item'>
-                    <a class='nav-link ' href='/contactus.php?p_id=6'>CONTACT US</a>
+                    <a class='nav-link ' href='/contactus.php?p_id=4'>CONTACT US</a>
                 </li>";
                     }
                     ?>

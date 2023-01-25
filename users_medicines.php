@@ -60,10 +60,12 @@ if (isset($_POST['search'])) {
             select.onclick = function() {
                 list.classList.toggle("open");
             }
+
             for (option of options) {
                 option.onclick = function() {
                     selectText.innerHTML = this.innerHTML;
                     inputField.placeholder = "Search In " + selectText.innerHTML;
+
                 }
             }
         </script>

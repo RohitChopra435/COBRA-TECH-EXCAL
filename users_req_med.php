@@ -7,18 +7,7 @@ if (isset($_SESSION['admin_name']))
 else
     include "user_navigation.php";
 ?>
-<?php
-if (!$_SESSION['profile']) {
 
-
-
-
-
-
-
-    header("Location: account.php?p_id=2");
-}
-?>
 
 <?php
 if (isset($_POST['checkBoxArray'])) {

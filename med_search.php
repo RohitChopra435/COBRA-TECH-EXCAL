@@ -8,8 +8,13 @@ else
     include "user_navigation.php";
 ?>
 <?php
-if (isset($_GET['m_name'])) {
+if (isset($_GET['m_name']) && isset($_GET['m_cat'])) {
     $med_name = $_GET['m_name'];
+    $med_cat = $_GET['m_cat'];
+    $query = "SELECT * FROM medicines WHERE med_name LIKE '%$med_name%' AND med_category = $med_cat ORDER BY med_id DESC";
+} else if (isset($_GET['m_name'])) {
+    $med_name = $_GET['m_name'];
+    $query = "SELECT * FROM medicines WHERE med_name LIKE '%$med_name%' ORDER BY med_id DESC";
 }
 ?>
 
@@ -36,7 +41,7 @@ if (isset($_GET['m_name'])) {
         <tbody>
             <tr>
                 <?php
-                $query = "SELECT * FROM medicines WHERE med_name LIKE '%$med_name%' ORDER BY med_id DESC";
+
                 $select_posts = mysqli_query($conn, $query);
                 while ($row = mysqli_fetch_assoc($select_posts)) {
                     $med_id = $row['med_id'];
