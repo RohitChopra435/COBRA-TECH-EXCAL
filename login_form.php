@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
       } else if ($row['user_type'] == 'delivery_agent') {
 
          $_SESSION['user_name'] = $row['username'];
-         header("Location: homepage.php?p_id=1");
+         header("Location: delivery-home.php?p_id=1");
       }
    } else {
       $error[] = 'incorrect email or password!';

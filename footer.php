@@ -1,22 +1,22 @@
-<footer class="footer p-10 bg-base-100 bg-info text-base-content flex m-auto">
+<footer class="footer p-10 bg-base-100 bg-secondary  text-base-content flex m-auto">
      <div class="mx-20">
           <span class="footer-title text-slate-700">Developed By</span><br>
-          <a class="bg-info-content" href="https://www.linkedin.com/in/sushmit-bhalothia-110276229/" target="_blank">
+          <a style="color: black;" class="bg-info-content" href="https://www.linkedin.com/in/sushmit-bhalothia-110276229/" target="_blank">
                Sushmit Bhalothia
 
           </a>
 
           <br>
-          <a class="bg-info-content" href="https://www.linkedin.com/in/rohit-chopra-477861229/" target="_blank">
+          <a style="color: black;" class="bg-info-content  " href="https://www.linkedin.com/in/rohit-chopra-477861229/" target="_blank">
                Rohit chopra
           </a>
           <br>
-          <a class="bg-info-content" href="https://www.linkedin.com/in/soumesh-khare-824706236/" target="_blank">
+          <a style="color: black;" class="bg-info-content" href="https://www.linkedin.com/in/soumesh-khare-824706236/" target="_blank">
 
                Soumesh khare
           </a>
           <br>
-          <a class="bg-info-content" href="" target="_blank">
+          <a style="color: black;" class="bg-info-content" href="" target="_blank">
 
                Shilpa Pandey
           </a>

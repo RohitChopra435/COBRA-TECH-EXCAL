@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="/dist/output.css" rel="stylesheet">
-
+    <div style="background-color:cornflowerblue; height: 30px;"></div>
     <!-- footer -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 

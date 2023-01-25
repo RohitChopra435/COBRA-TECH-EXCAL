@@ -6,14 +6,17 @@ if (isset($_GET['p_id'])) {
 }
 ?>
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark  w-screen  bg-secondary -mx-36  -mt-12">
         <div class=" container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <?php
                     if ($p_id == 1) {
 
-                        echo "<li class='nav-item'>
+                        echo "<li style='text-decoration-color: black;' class='nav-item '>
                         <a class='nav-link active' aria-current='page' href='/homepage.php?p_id=1'>Home</a>
                     </li>";
                     } else {
