@@ -16,20 +16,18 @@ if (isset($_POST['submit'])) {
    $result = mysqli_query($conn, $select);
 
    if (mysqli_num_rows($result) > 0) {
-
       $row = mysqli_fetch_array($result);
+      $type = $row['user_type'];
 
-      if ($row['user_type'] == 'admin') {
+      if ($type === 'admin') {
 
          $_SESSION['admin_name'] = $row['username'];
          header("Location: index.php?p_id=1");
-      } else if ($row['user_type'] == 'user') {
-
+      } else if ($row['user_type'] === 'user') {
          $_SESSION['user_name'] = $row['username'];
          header("Location: homepage.php?p_id=1");
-      } else if ($row['user_type'] == 'delivery_agent') {
-
-         $_SESSION['user_name'] = $row['username'];
+      } else if ($row['user_type'] === 'delivery agent') {
+         $_SESSION['delivery_name'] = $row['username'];
          header("Location: delivery-home.php?p_id=1");
       }
    } else {
@@ -37,13 +35,9 @@ if (isset($_POST['submit'])) {
    }
 };
 ?>
-
 <?php include "header.php"; ?>
 <?php include "main_navigation.php"; ?>
-
-
-<div class="form-container">
-
+<div class="form-container -mt-36">
    <form action="" method="post">
       <h3>login now</h3>
       <?php

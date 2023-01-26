@@ -33,8 +33,6 @@ if (isset($_POST['submit'])) {
 
         $query = "UPDATE medicines SET med_requestedQuant = med_requestedQuant + $quant WHERE med_id = $the_med_id";
         $the_request_query = mysqli_query($conn, $query);
-        $query = "UPDATE medicines SET med_status = 1 WHERE med_id = $the_med_id";
-        $the_request_query = mysqli_query($conn, $query);
         echo "
         <script>
         setTimeout(()=>window.location.href='/users_medicines.php',1000);
@@ -50,7 +48,7 @@ if (isset($_POST['submit'])) {
             $the_user_id = $row['user_Id'];
         }
 
-        $query = " INSERT INTO order_list(order_med_Id,order_user_Id,quant_order,order_status) VALUES($the_med_id,$the_user_id,$quant,'Pending') ";
+        $query = " INSERT INTO order_list(order_med_Id,order_user_Id,quant_order,order_status,order_type) VALUES($the_med_id,$the_user_id,$quant,'Pending','Drop') ";
         $the_request_query = mysqli_query($conn, $query);
     }
 };

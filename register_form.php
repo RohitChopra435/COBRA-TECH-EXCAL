@@ -9,13 +9,13 @@ if (isset($_POST['submit'])) {
    $email = $_POST['email'];
    $pass = $_POST['password'];
    $cpass = $_POST['cpassword'];
-   $phone = $_POST['phone'];
+   $phone = $_POST['phoneno'];
    $address = $_POST['address'];
    $pass = mysqli_real_escape_string($conn, $_POST['password']);
    $cpass = mysqli_real_escape_string($conn, $_POST['cpassword']);
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+   $phone = mysqli_real_escape_string($conn, $_POST['phoneno']);
    $address = mysqli_real_escape_string($conn, $_POST['address']);
    $username = mysqli_real_escape_string($conn, $_POST['username']);
 

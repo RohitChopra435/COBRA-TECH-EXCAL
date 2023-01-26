@@ -1,5 +1,5 @@
 <?php
-
+// session_start();
 $username = $_SESSION['delivery_name'];
 
 ?>
@@ -11,7 +11,8 @@ if (isset($_GET['p_id'])) {
 }
 ?>
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark  w-screen  bg-secondary  -mx-36  -mt-12 -mb-72">
+
         <div class=" container-fluid">
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -37,7 +37,7 @@ if (isset($_GET['assign'])) {
         <tbody>
             <tr>
                 <?php
-                $query = "SELECT * FROM medicines JOIN order_list ON med_id = order_med_Id WHERE order_status != 'done' AND order_type = 'Drop' ORDER BY med_id DESC";
+                $query = "SELECT * FROM medicines JOIN order_list ON med_id = order_med_Id WHERE order_status != 'done' AND order_type = 'PickUp' ORDER BY med_id DESC";
                 $select_posts = mysqli_query($conn, $query);
                 while ($row = mysqli_fetch_assoc($select_posts)) {
                     $order_id = $row['order_Id'];

@@ -9,35 +9,7 @@ else
 ?>
 
 
-<?php
-if (isset($_POST['checkBoxArray'])) {
-    foreach ($_POST['checkBoxArray'] as $orderValueId) {
 
-        $bulk_option = $_POST['bulk_options'];
-        switch ($bulk_option) {
-
-            case 'delete':
-                $query = "DELETE FROM order_list WHERE order_Id ={$orderValueId}; ";
-                $delete_query = mysqli_query($conn, $query);
-
-                break;
-
-            case 'cancel':
-                $query = "UPDATE order_list SET order_status = 'Cancelled' WHERE order_Id={$orderValueId}";
-                $update_order_status = mysqli_query($conn, $query);
-
-                $query = "SELECT * FROM order_list WHERE order_id = $orderValueId";
-                $run_query = mysqli_query($conn, $query);
-                $row = mysqli_fetch_array($run_query);
-                $order_quant = $row['quant_order'];
-                $med_id = $row['order_med_Id'];
-                $query = "UPDATE medicines SET med_requestedQuant = med_requestedQuant - $order_quant WHERE med_id = $med_id";
-                $update_query = mysqli_query($conn, $query);
-                break;
-        }
-    }
-}
-?>
 
 <?php
 $username = $_SESSION['user_name'];
@@ -59,14 +31,27 @@ if (isset($_GET['cancel'])) {
     $query = "UPDATE order_list SET order_status = 'Cancelled' WHERE order_Id={$the_order_Id}";
     $update_order_status = mysqli_query($conn, $query);
 
-    $query = "SELECT * FROM order_list WHERE order_id = $the_order_Id";
-    $run_query = mysqli_query($conn, $query);
-    if (mysqli_num_rows($run_query)) {
-        $row = mysqli_fetch_array($run_query);
-        $order_quant = $row['quant_order'];
-        $med_id = $row['order_med_Id'];
-        $query = "UPDATE medicines SET med_requestedQuant = med_requestedQuant - $order_quant WHERE med_id = $med_id";
-        $update_query = mysqli_query($conn, $query);
+    $query = "SELECT * FROM order_list WHERE order_Id = $the_order_Id";
+    $run = mysqli_query($conn, $query);
+    $row = mysqli_fetch_array($run);
+    $med_id = $row['order_med_Id'];
+    $type = $row['order_type'];
+    if ($type == 'PickUp') {
+
+        $query = "DELETE FROM medicines WHERE med_id = $med_id";
+        $run = mysqli_query($conn, $query);
+    }
+
+    if ($type = 'Drop') {
+        $query = "SELECT * FROM order_list WHERE order_id = $the_order_Id";
+        $run_query = mysqli_query($conn, $query);
+        if (mysqli_num_rows($run_query)) {
+            $row = mysqli_fetch_array($run_query);
+            $order_quant = $row['quant_order'];
+            $med_id = $row['order_med_Id'];
+            $query = "UPDATE medicines SET med_requestedQuant = med_requestedQuant - $order_quant WHERE med_id = $med_id";
+            $update_query = mysqli_query($conn, $query);
+        }
     }
 }
 ?>
@@ -75,29 +60,20 @@ if (isset($_GET['cancel'])) {
 <form action="" method="post">
     <hr>
     <center>
-        <h4>Requested Medicines List</h4>
+        <h3>My Cart</h3>
     </center>
-    <hr>
-    <div id="bulkOptionsContainer" class="col-xs-4">
 
-        <select class="form-control" name="bulk_options" id="">
-            <option value="">Select Options</option>
-            <option value="delete">Delete</option>
-            <option value="cancel">Cancel</option>
-        </select>
-        <input type="submit" name="submit" class="btn btn-success" value="Apply">
-    </div>
-    <hr>
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th><input type="checkbox" id="selectAllBoxes"></th>
+
                 <th>Medicine Name</th>
                 <th>Expiry Date</th>
                 <th>Category</th>
                 <th>Brand</th>
                 <th>Requested Quantity</th>
                 <th>Status</th>
+                <th>type</th>
                 <th>Cancel/Delete</th>
             </tr>
         </thead>
@@ -126,13 +102,10 @@ if (isset($_GET['cancel'])) {
                     $med_brand = $row['med_brand'];
                     $order_quant = $row['quant_order'];
                     $order_status = $row['order_status'];
+                    $order_type = $row['order_type'];
 
                 ?>
-                    <?php
 
-
-                    ?>
-                    <td><input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value="<?php echo $order_id; ?>"></td>
 
                 <?php
                     echo "<td>{$med_name}</td>";
@@ -141,6 +114,7 @@ if (isset($_GET['cancel'])) {
                     echo "<td>{$med_brand}</td>";
                     echo "<td>{$order_quant}</td>";
                     echo "<td>$order_status</td>";
+                    echo "<td>$order_type</td>";
                     if ($order_status === 'Pending')
                         echo "<td><a href='users_req_med.php?cancel={$order_id}'>Cancel</a></td>";
                     else

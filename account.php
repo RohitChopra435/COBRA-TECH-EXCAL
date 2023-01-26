@@ -1,15 +1,18 @@
 <?php @include 'config.php'; ?>
+<?php @include 'header.php'; ?>
 <?php session_start(); ?>
 
-<?php include "header.php"; ?>
 
 <?php
 if (isset($_SESSION['admin_name'])) {
   include "admin_navigation.php";
   $username = $_SESSION['admin_name'];
-} else {
+} else if (isset($_SESSION['user_name'])) {
   include "user_navigation.php";
   $username = $_SESSION['user_name'];
+} else {
+  include "delivery-nav.php";
+  $username = $_SESSION['delivery_name'];
 }
 ?>
 <?php
@@ -36,9 +39,9 @@ if (isset($_POST['update'])) {
   $query = "UPDATE user_form SET ";
 
   $query .= "user_fullname = '{$user_fullname}', ";
-  $query .= "user_phoneno = '{$user_phone_number}', ";
+  $query .= "user_phone = '{$user_phone_number}', ";
   $query .= "user_address = '{$user_address}', ";
-  $query .= "user_name = '{$username}' ";
+  $query .= "username = '{$username}' ";
 
 
   $query .= "WHERE user_id = {$user_id} ";
@@ -47,7 +50,6 @@ if (isset($_POST['update'])) {
   if (!$select_user_profile_query) {
     die("Query Failed" . mysqli_error($conn));
   }
-  $_SESSION['profile'] = 'ok';
 }
 ?>
 
@@ -62,11 +64,11 @@ if (isset($_POST['update'])) {
 
 
       <h4>User_fullname</h4>
-      <input type='text' name='user_fullname' value="<?php echo $user_fullname; ?>">;
+      <input type='text' name='user_fullname' value="<?php echo $user_fullname; ?>">
       <h4>User_Phone Number</h4>
-      <input type='text' name='user_phone_number' value="<?php echo $user_phone_number; ?>">;
+      <input type='text' name='user_phone_number' value="<?php echo $user_phone_number; ?>">
       <h4>User Address</h4>
-      <input type='text' name='user_address' value="<?php echo $user_address; ?>">;
+      <input type='text' name='user_address' value="<?php echo $user_address; ?>">
       <!-- <h4></h4> -->
       <input type="submit" name="update" value="Update Now" class="form-btn">
     </form>

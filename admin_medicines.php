@@ -7,47 +7,31 @@ if (isset($_SESSION['admin_name']))
 else
     include "user_navigation.php";
 ?>
-<?php
-if (isset($_POST['search'])) {
-    $hint = $_POST['med'];
-    header("Location: admin_med_search.php?hint=$hint&p_id=3");
-}
-?>
-<div class="container">
-    <div class="search-bar">
-        <div id="select">
-            <p id="selectText">All categories</p>
-            <img src="./images/arrow.png">
-            <ul id="list">
-                <li class="options">All Categories</li>
-                <li class="options">Electronics</li>
-                <li class="options">Furniture</li>
-                <li class="options">Sports</li>
-                <li class="options">Fashion</li>
-            </ul>
-        </div>
-        <input id="inputField" type="text" placeholder="Search Medicine">
-        <button name="search" class="btn btn-primary">Search</button>
-    </div>
-</div>
-<script>
-    let select = document.getElementById("select");
-    let list = document.getElementById("list");
-    let selectText = document.getElementById("selectText");
-    let inputField = document.getElementById("inputField");
-    let options = document.getElementsByClassName("options");
-    select.onclick = function() {
-        list.classList.toggle("open");
-    }
-    for (option of options) {
-        option.onclick = function() {
-            selectText.innerHTML = this.innerHTML;
-            inputField.placeholder = "Search In " + selectText.innerHTML;
-        }
-    }
-</script>
+<form action="list_by_categories.php" method="post">
 
-<form action="" method="post">
+
+    <div class="search-bar">
+
+        <div>
+            <select name="medicine_category">
+                <option value='All Categories'>All Categories</option>
+                <option value='Antibiotics'>Antibiotics</option>
+                <option value='Antiseptic'>Antiseptic</option>
+                <option value='Antipyretics'>Antipyretics</option>
+                <option value='Mood stabilizers'>Mood stabilizers</option>
+                <option value='Stimulant'>Stimulant</option>
+                <option value='Analgesic'>Analgesic</option>
+            </select>
+        </div>
+
+
+        <div>
+            <input id="inputField" type="text" placeholder="Search Medicine" name="med_name" required>
+            <button name="search" class="btn btn-primary">
+                Search</button>
+        </div>
+    </div>
+
     <center>
         <hr>
         <h4>Medicines Records List</h4>
@@ -64,7 +48,6 @@ if (isset($_POST['search'])) {
                 <th>Category</th>
                 <th>Brand</th>
                 <th>Available Quantity</th>
-                <th>Quantity Requested</th>
             </tr>
         </thead>
         <tbody>
@@ -79,11 +62,7 @@ if (isset($_POST['search'])) {
                     $med_date = $row['med_expiryDate'];
                     $med_brand = $row['med_brand'];
                     $med_availableQuant = $row['med_availableQuant'];
-                    $med_requestedQuant = $row['med_requestedQuant'];
-                    $med_status = $row['med_status'];
-
                 ?>
-
                 <?php
                     echo "<td></td>";
                     echo "<td>{$med_name}</td>";
@@ -91,7 +70,6 @@ if (isset($_POST['search'])) {
                     echo "<td>{$med_category}</td>";
                     echo "<td>{$med_brand}</td>";
                     echo "<td>{$med_availableQuant}</td>";
-                    echo "<td>{$med_requestedQuant}</td>";
                     echo "</tr>";
                 } ?>
         </tbody>

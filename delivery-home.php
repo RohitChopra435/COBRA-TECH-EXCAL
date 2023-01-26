@@ -1,18 +1,48 @@
 <?php @include 'config.php'; ?>
 <?php include "header.php"; ?>
-
 <?php session_start(); ?>
+
 <?php include "delivery-nav.php" ?>
+
 <?php
-if (isset($_POST['search'])) {
-    $med_name = $_POST['med'];
-    header("Location: med_search.php?m_name=$med_name");
+
+if (isset($_GET['o_id']) && isset($_GET['m_id'])) {
+    $order_id = $_GET['o_id'];
+    $med_id = $_GET['m_id'];
+
+    $query = "SELECT * FROM order_list WHERE order_Id = $order_id";
+    $run = mysqli_query($conn, $query);
+    $row = mysqli_fetch_array($run);
+    $type = $row['order_type'];
+
+    $query = "SELECT * FROM order_list WHERE order_Id = $order_id";
+    $run = mysqli_query($conn, $query);
+    $row = mysqli_fetch_array($run);
+    $quant = $row['quant_order'];
+
+    if ($type == 'PickUp') {
+        $query = "UPDATE order_list SET order_status = 'done' WHERE order_id = $order_id";
+        $run = mysqli_query($conn, $query);
+        $query = "UPDATE medicines SET med_status = 'done' WHERE med_id = $med_id";
+        $run = mysqli_query($conn, $query);
+        $query = "UPDATE medicines SET med_availableQuant = med_availableQuant + $quant  
+              WHERE med_id = $med_id";
+        $run = mysqli_query($conn, $query);
+    } else {
+        $query = "UPDATE order_list SET order_status = 'done' WHERE order_id = $order_id";
+        $run = mysqli_query($conn, $query);
+        $query = "UPDATE medicines SET med_availableQuant = med_availableQuant - $quant  
+              WHERE med_id = $med_id";
+        $run = mysqli_query($conn, $query);
+    }
+
+
+
+
+
+
+    header("Location: delivery-home.php");
 }
-
-?>
-<?php
-
-
 
 ?>
 <form action="" method="post">
@@ -37,14 +67,14 @@ if (isset($_POST['search'])) {
                     <?php
 
                     $query = "SELECT * FROM medicines m JOIN order_list o ON m.med_Id = o.order_med_Id
-             AND order_status='Pending' ORDER BY order_id DESC";
+             AND order_status='Assigned' ORDER BY order_id DESC";
 
 
 
                     $select_posts = mysqli_query($conn, $query);
                     while ($row = mysqli_fetch_assoc($select_posts)) {
                         $med_id = $row['med_id'];
-                        $user_id = $row['user_id'];
+                        $user_id = $row['order_user_Id'];
                         $order_id = $row['order_Id'];
                         $med_name = $row['med_name'];
                         $med_category = $row['med_category'];
@@ -72,7 +102,7 @@ if (isset($_POST['search'])) {
                         echo "<td>{$location}</td>";
                         echo "<td>{$order_quant}</td>";
                         echo "<td>{$order_type}</td>";
-                        echo "<td><a href='requested_form.php?m_id={$med_id}'>Delivery Done</a></td>";
+                        echo "<td><a href='delivery-home.php?o_id={$order_id}&m_id={$med_id}'>Delivery Done</a></td>";
                         echo "</tr>";
                     } ?>
             </tbody>

@@ -50,13 +50,22 @@ if (isset($_GET['p_id'])) {
                     //        <a class='nav-link ' href='/account.php?p_id=2'>Account</a>
                     //    </li>";
                     //     }
-                    if ($p_id == 3) {
+                    if ($p_id == 2) {
                         echo "<li class='nav-item'>
-                    <a class='nav-link active' href='/admin_medicines.php?p_id=3'>Medicine </a>
+                    <a class='nav-link active' href='/admin_medicines.php?p_id=2'>Medicine </a>
                 </li>";
                     } else {
                         echo "<li class='nav-item'>
-                    <a class='nav-link ' href='/admin_medicines.php?p_id=3'>Medicine </a>
+                    <a class='nav-link ' href='/admin_medicines.php?p_id=2'>Medicine </a>
+                </li>";
+                    }
+                    if ($p_id == 3) {
+                        echo "<li class='nav-item'>
+                    <a class='nav-link active' href='/donation_req.php?p_id=3'>Donations Request</a>
+                </li>";
+                    } else {
+                        echo "<li class='nav-item'>
+                    <a class='nav-link ' href='/donation_req.php?p_id=3'>Donations Request</a>
                 </li>";
                     }
                     if ($p_id == 4) {
@@ -70,20 +79,11 @@ if (isset($_GET['p_id'])) {
                     }
                     if ($p_id == 5) {
                         echo "<li class='nav-item'>
-                    <a class='nav-link active' href='/delivery_medicine.php?p_id=5'>Assign Delivery </a>
+                    <a class='nav-link active' href='/admin_med_records.php?p_id=5'>Medicines Record</a>
                 </li>";
                     } else {
                         echo "<li class='nav-item'>
                     <a class='nav-link ' href='/admin_med_records.php?p_id=5'>Medicines Record</a>
-                </li>";
-                    }
-                    if ($p_id == 6) {
-                        echo "<li class='nav-item'>
-                    <a class='nav-link active' href='/delivery_medicine.php?p_id=6'>Assign Delivery </a>
-                </li>";
-                    } else {
-                        echo "<li class='nav-item'>
-                    <a class='nav-link ' href='/delivery_medicine.php?p_id=6'>Assign Delivery</a>
                 </li>";
                     }
                     echo "<li class='nav-item'>
