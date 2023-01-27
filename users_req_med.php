@@ -1,5 +1,6 @@
 <?php @include 'config.php'; ?>
 <?php @include 'header.php'; ?>
+<?php session_start(); ?>
 <?php
 if (isset($_SESSION['admin_name']))
     include "admin_navigation.php";

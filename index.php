@@ -1,6 +1,5 @@
 <?php include "config.php" ?>
 <?php include "header.php" ?>
-<?php session_start(); ?>
 
 <div id="wrapper">
 
@@ -16,7 +15,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">
                         Welcome To Admin
-                        <small><?php echo $_SESSION['admin_name'] ?></small>
+                        <small><?php echo $username; ?></small>
                     </h1>
 
                 </div>

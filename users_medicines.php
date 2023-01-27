@@ -1,5 +1,6 @@
 <?php @include 'config.php'; ?>
 <?php @include 'header.php'; ?>
+<?php session_start(); ?>
 <?php
 include "user_navigation.php";
 if (isset($_POST['search'])) {

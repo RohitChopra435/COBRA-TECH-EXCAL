@@ -9,17 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="/dist/output.css" rel="stylesheet">
-    <?php
-    session_start();
-    if (isset($_SESSION['user_name']) || isset($_SESSION['admin_name']) || isset($_SESSION['delivery_name'])) {
 
-    ?>
-        <div style="background-color:cornflowerblue; height: 30px; justify-content: flex-end;" } else { ?>
+    <div style="background-color:cornflowerblue; height: 30px; justify-content: flex-end;">
 
-        </div>
-    <?php
-    }
-    ?>
+    </div>
+
     <!-- footer -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 

@@ -1,4 +1,5 @@
 <?php
+
 $username = $_SESSION['user_name'];
 ?>
 <div class="album py-2 bg-light -mb-36">

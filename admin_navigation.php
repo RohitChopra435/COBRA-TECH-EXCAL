@@ -1,10 +1,12 @@
 <?php
-if ($_SESSION['admin_name']) {
+if (isset($_SESSION['admin_name'])) {
     $username = $_SESSION['admin_name'];
-} else if ($_SESSION['user_name']) {
+} else if (isset($_SESSION['user_name'])) {
     $username = $_SESSION['user_name'];
-} else {
+} else if (isset($_SESSION['delivery_name'])) {
     $username = $_SESSION['delivery_name'];
+} else {
+    $username = "";
 }
 
 ?>

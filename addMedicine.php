@@ -1,10 +1,8 @@
 <?php include "header.php"; ?>
 <?php include "config.php"; ?>
+<?php session_start(); ?>
 <?php
-if (isset($_SESSION['admin_name']))
-    include "admin_navigation.php";
-else
-    include "user_navigation.php";
+include "user_navigation.php";
 ?>
 
 <?php
