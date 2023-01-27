@@ -114,7 +114,10 @@ if (isset($_GET['cancel'])) {
                     echo "<td>{$med_brand}</td>";
                     echo "<td>{$order_quant}</td>";
                     echo "<td>$order_status</td>";
-                    echo "<td>$order_type</td>";
+                    if ($order_type == 'PickUp')
+                        echo "<td>Donate</td>";
+                    if ($order_type == 'Drop')
+                        echo "<td>Recieve</td>";
                     if ($order_status === 'Pending')
                         echo "<td><a href='users_req_med.php?cancel={$order_id}'>Cancel</a></td>";
                     else

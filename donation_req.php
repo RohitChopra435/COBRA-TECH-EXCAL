@@ -23,13 +23,19 @@ if (isset($_GET['assign'])) {
 
 
     <table class="table table-bordered table-hover">
+
+        <hr>
+        <center>
+            <h2><b>Medicine Donations Requests</b></h2>
+        </center>
+        <hr>
         <thead>
             <tr>
+                <th>User Name</th>
                 <th>Medicine Name</th>
                 <th>Category</th>
                 <th>Brand</th>
-                <th>Available Quantity</th>
-                <th>Quantity Requested</th>
+                <th>Quantity Donated</th>
                 <th>Action/Status</th>
 
             </tr>
@@ -41,22 +47,25 @@ if (isset($_GET['assign'])) {
                 $select_posts = mysqli_query($conn, $query);
                 while ($row = mysqli_fetch_assoc($select_posts)) {
                     $order_id = $row['order_Id'];
+                    $med_user_id = $row['order_user_Id'];
                     $order_status = $row['order_status'];
                     $med_name = $row['med_name'];
                     $med_category = $row['med_category'];
                     $med_brand = $row['med_brand'];
-                    $med_availableQuant = $row['med_availableQuant'];
-                    $med_requestedQuant = $row['quant_order'];
+                    $med_availableQuant = $row['quant_order'];
+
+                    $query = "SELECT * FROM user_form WHERE user_Id = $med_user_id";
+                    $run = mysqli_query($conn, $query);
+                    $row = mysqli_fetch_array($run);
+                    $username = $row['username'];
+
                 ?>
-
-
-
                 <?php
+                    echo "<td>{$username}</td>";
                     echo "<td>{$med_name}</td>";
                     echo "<td>{$med_category}</td>";
                     echo "<td>{$med_brand}</td>";
                     echo "<td>{$med_availableQuant}</td>";
-                    echo "<td>{$med_requestedQuant}</td>";
                     if ($order_status == 'Pending') {
                         echo "<td><a href='admin_req_medicines.php?assign={$order_id}'>Assign Delivery</a></td>";
                     } else {

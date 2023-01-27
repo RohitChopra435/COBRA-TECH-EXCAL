@@ -37,7 +37,19 @@ if (isset($_POST['add'])) {
 ?>
 
 
+<center>
+    <h3>
+        <?php
+        $query = "SELECT * FROM recommended ORDER BY demand DESC";
+        $run = mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($run);
+        $med_name = $row['med_name'];
+        echo "Recommeded Medicine : ";
+        echo $med_name;
+        ?>
 
+    </h3>
+</center>
 <div class="form-container">
 
     <form action="" method="post">

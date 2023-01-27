@@ -12,12 +12,28 @@ if (isset($_SESSION['user_name'])) {
     $username = $_SESSION['user_name'];
 }
 ?>
+<?php
+if (isset($_POST['add'])) {
+    $med_name = $_POST['m_name'];
+    $query = "SELECT * FROM recommended WHERE med_name = '$med_name'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_array($result);
+        $new_demand = $row['demand'] + 1;
+        $query = "UPDATE recommended SET demand = $new_demand WHERE med_name = '$med_name'";
+        $result = mysqli_query($conn, $query);
+    } else {
+        $query = "INSERT INTO recommended(med_name,demand) VALUES('$med_name',1)";
+        $result = mysqli_query($conn, $query);
+    }
+}
+?>
 
 
-<form action="user_search.php" method="post">
 
-
-    <div class="search-bar">
+<div class="search-bar">
+    <form action="user_search.php" method="post">
 
         <div>
             <select name="medicine_category">
@@ -37,9 +53,20 @@ if (isset($_SESSION['user_name'])) {
             <button name="search" class="btn btn-primary">
                 Search</button>
         </div>
-    </div>
 
-</form>
+    </form>
+    <form action="" method="post">
+        <div>
+            <p><b>Add Recommended Medicines:</b></p>
+            <input id="inputField" type="text" placeholder="Add Recommended Medicine" name="m_name" required>
+            <button name="add" class="btn btn-primary">
+                Add</button>
+        </div>
+    </form>
+
+</div>
+
+
 
 
 <table class="table table-bordered table-hover">

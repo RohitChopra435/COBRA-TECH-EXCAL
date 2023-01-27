@@ -7,36 +7,60 @@
 <?php
 
 if (isset($_GET['o_id']) && isset($_GET['m_id'])) {
-    $order_id = $_GET['o_id'];
-    $med_id = $_GET['m_id'];
+    if ($_GET['source'] == 'done') {
+        $order_id = $_GET['o_id'];
+        $med_id = $_GET['m_id'];
 
-    $query = "SELECT * FROM order_list WHERE order_Id = $order_id";
-    $run = mysqli_query($conn, $query);
-    $row = mysqli_fetch_array($run);
-    $type = $row['order_type'];
-
-    $query = "SELECT * FROM order_list WHERE order_Id = $order_id";
-    $run = mysqli_query($conn, $query);
-    $row = mysqli_fetch_array($run);
-    $quant = $row['quant_order'];
-
-    if ($type == 'PickUp') {
-        $query = "UPDATE order_list SET order_status = 'done' WHERE order_id = $order_id";
+        $query = "SELECT * FROM order_list WHERE order_Id = $order_id";
         $run = mysqli_query($conn, $query);
-        $query = "UPDATE medicines SET med_status = 'done' WHERE med_id = $med_id";
+        $row = mysqli_fetch_array($run);
+        $type = $row['order_type'];
+
+        $query = "SELECT * FROM order_list WHERE order_Id = $order_id";
         $run = mysqli_query($conn, $query);
-        $query = "UPDATE medicines SET med_availableQuant = med_availableQuant + $quant  
+        $row = mysqli_fetch_array($run);
+        $quant = $row['quant_order'];
+
+        if ($type == 'PickUp') {
+            $query = "UPDATE order_list SET order_status = 'done' WHERE order_id = $order_id";
+            $run = mysqli_query($conn, $query);
+            $query = "UPDATE medicines SET med_status = 'done' WHERE med_id = $med_id";
+            $run = mysqli_query($conn, $query);
+            $query = "UPDATE medicines SET med_availableQuant = med_availableQuant + $quant  
               WHERE med_id = $med_id";
-        $run = mysqli_query($conn, $query);
+            $run = mysqli_query($conn, $query);
+        } else {
+            $query = "UPDATE order_list SET order_status = 'done' WHERE order_id = $order_id";
+            $run = mysqli_query($conn, $query);
+            $query = "UPDATE medicines SET med_availableQuant = med_availableQuant - $quant  
+              WHERE med_id = $med_id";
+            $run = mysqli_query($conn, $query);
+        }
     } else {
-        $query = "UPDATE order_list SET order_status = 'done' WHERE order_id = $order_id";
+
+        $order_id = $_GET['o_id'];
+        $med_id = $_GET['m_id'];
+
+        $query = "SELECT * FROM order_list WHERE order_Id = $order_id";
         $run = mysqli_query($conn, $query);
-        $query = "UPDATE medicines SET med_availableQuant = med_availableQuant - $quant  
-              WHERE med_id = $med_id";
+        $row = mysqli_fetch_array($run);
+        $type = $row['order_type'];
+
+        $query = "SELECT * FROM order_list WHERE order_Id = $order_id";
         $run = mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($run);
+        $quant = $row['quant_order'];
+
+        if ($type == 'PickUp') {
+            $query = "UPDATE order_list SET order_status = 'cancelled' WHERE order_id = $order_id";
+            $run = mysqli_query($conn, $query);
+            $query = "DELETE medicines WHERE med_id = $med_id";
+            $run = mysqli_query($conn, $query);
+        } else {
+            $query = "UPDATE order_list SET order_status = 'cancelled' WHERE order_id = $order_id";
+            $run = mysqli_query($conn, $query);
+        }
     }
-
-
 
 
 
@@ -59,7 +83,8 @@ if (isset($_GET['o_id']) && isset($_GET['m_id'])) {
                     <th>Location</th>
                     <th>Quantity</th>
                     <th>Type</th>
-                    <th>Action</th>
+                    <th>Done</th>
+                    <th>Cancel</th>
                 </tr>
             </thead>
             <tbody>
@@ -102,7 +127,8 @@ if (isset($_GET['o_id']) && isset($_GET['m_id'])) {
                         echo "<td>{$location}</td>";
                         echo "<td>{$order_quant}</td>";
                         echo "<td>{$order_type}</td>";
-                        echo "<td><a href='delivery-home.php?o_id={$order_id}&m_id={$med_id}'>Delivery Done</a></td>";
+                        echo "<td><a href='delivery-home.php?source=done&o_id={$order_id}&m_id={$med_id}'>Delivery Done</a></td>";
+                        echo "<td><a href='delivery-home.php?source=cancel&o_id={$order_id}&m_id={$med_id}'>Delivery Cancel</a></td>";
                         echo "</tr>";
                     } ?>
             </tbody>

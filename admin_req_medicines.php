@@ -23,6 +23,11 @@ if (isset($_GET['assign'])) {
 
 
     <table class="table table-bordered table-hover">
+        <hr>
+        <center>
+            <h2><b>Medicines Requests</b></h2>
+        </center>
+        <hr>
         <thead>
             <tr>
                 <th>Medicine Name</th>
@@ -37,7 +42,7 @@ if (isset($_GET['assign'])) {
         <tbody>
             <tr>
                 <?php
-                $query = "SELECT * FROM medicines JOIN order_list ON med_id = order_med_Id WHERE order_status != 'done' AND order_type = 'Drop' ORDER BY med_id DESC";
+                $query = "SELECT * FROM medicines JOIN order_list ON med_id = order_med_Id WHERE order_status != 'done' && order_status != 'cancelled' AND order_type = 'Drop' ORDER BY med_id DESC";
                 $select_posts = mysqli_query($conn, $query);
                 while ($row = mysqli_fetch_assoc($select_posts)) {
                     $order_id = $row['order_Id'];

@@ -6,7 +6,7 @@ if (isset($_GET['p_id'])) {
 }
 ?>
 <div class="album py-2 bg-light">
-    <div class="container">
+    <div class="container -mt-8">
         <nav class="navbar navbar-expand-lg navbar-dark  w-screen  bg-secondary  -mx-36  -mt-2 -mb-72">
             <div class=" container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

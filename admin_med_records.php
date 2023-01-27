@@ -3,11 +3,14 @@
 <?php session_start(); ?>
 
 <?php include "admin_navigation.php" ?>
-
-
 <form action="" method="post">
 
     <table class="table table-bordered table-hover">
+        <hr>
+        <center>
+            <h2><b>Medicine Records</b></h2>
+        </center>
+        <hr>
         <div class="container">
 
             <thead>
@@ -19,6 +22,7 @@
                     <th>Location</th>
                     <th>Quantity</th>
                     <th>Type</th>
+                    <th>Status</th>
 
                 </tr>
             </thead>
@@ -27,7 +31,7 @@
                     <?php
 
                     $query = "SELECT * FROM medicines m JOIN order_list o ON m.med_Id = o.order_med_Id
-             AND order_status ='done' ORDER BY order_id DESC";
+             WHERE order_status ='done' OR order_status ='cancelled' ORDER BY order_id DESC";
 
 
 
@@ -42,6 +46,7 @@
                         $med_brand = $row['med_brand'];
                         $order_quant = $row['quant_order'];
                         $order_type = $row['order_type'];
+                        $order_status = $row['order_status'];
 
 
                         $the_query = "SELECT user_address FROM user_form WHERE user_id= $user_id";
@@ -57,7 +62,11 @@
                         echo "<td>{$med_brand}</td>";
                         echo "<td>{$location}</td>";
                         echo "<td>{$order_quant}</td>";
-                        echo "<td>{$order_type}</td>";
+                        if ($order_type == 'PickUp')
+                            echo "<td>Donation</td>";
+                        if ($order_type == 'Drop')
+                            echo "<td>Delivery</td>";
+                        echo "<td>{$order_status}</td>";
                         echo "</tr>";
                     } ?>
             </tbody>

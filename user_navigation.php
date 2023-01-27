@@ -1,7 +1,7 @@
 <?php
 $username = $_SESSION['user_name'];
 ?>
-<div class="album py-5 bg-light">
+<div class="album py-5 bg-dark">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-screen -mx-4  -mt-12">
         <div class="container-fluid">
 
