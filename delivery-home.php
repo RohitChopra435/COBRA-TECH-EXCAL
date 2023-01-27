@@ -54,7 +54,7 @@ if (isset($_GET['o_id']) && isset($_GET['m_id'])) {
         if ($type == 'PickUp') {
             $query = "UPDATE order_list SET order_status = 'cancelled' WHERE order_id = $order_id";
             $run = mysqli_query($conn, $query);
-            $query = "DELETE medicines WHERE med_id = $med_id";
+            $query = "DELETE FROM medicines WHERE med_id = $med_id";
             $run = mysqli_query($conn, $query);
         } else {
             $query = "UPDATE order_list SET order_status = 'cancelled' WHERE order_id = $order_id";
@@ -69,7 +69,7 @@ if (isset($_GET['o_id']) && isset($_GET['m_id'])) {
 }
 
 ?>
-<form action="" method="post">
+<form class="-mt-20" action="" method="post">
 
     <table class="table table-bordered table-hover">
         <div class="container">

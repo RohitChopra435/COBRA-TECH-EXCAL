@@ -13,7 +13,9 @@ if (isset($_SESSION['user_name'])) {
 
 
 
-
+<center>
+    <h2>This is search Results</h2>
+</center>
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -35,7 +37,7 @@ if (isset($_SESSION['user_name'])) {
                 $med_cat = $_POST['medicine_category'];
                 $med_name = $_POST['med_name'];
 
-                if ($med_cat == 'All Catogory') {
+                if ($med_cat == 'All Categories') {
                     $query = "select * from medicines where med_name like '%{$med_name}%'";
                 } else {
                     $query = "select * from medicines where med_category = '$med_cat' and med_name like '%{$med_name}%'";
