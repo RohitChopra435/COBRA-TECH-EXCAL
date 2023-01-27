@@ -11,7 +11,7 @@ if (isset($_GET['p_id'])) {
 }
 ?>
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark  w-screen  bg-secondary  -mx-36  -mt-12 -mb-72">
+    <nav class="navbar navbar-expand-lg navbar-dark  w-screen  bg-light  -mx-36  -mt-12 -mb-72">
 
         <div class=" container-fluid">
 
