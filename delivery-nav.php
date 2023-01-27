@@ -1,6 +1,10 @@
 <?php
-// session_start();
-$username = $_SESSION['delivery_name'];
+if (isset($_SESSION['delivery_name'])) {
+
+    $username = $_SESSION['delivery_name'];
+} else {
+    $username = "";
+}
 
 ?>
 <?php
