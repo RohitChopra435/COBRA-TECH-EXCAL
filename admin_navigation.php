@@ -30,7 +30,7 @@ if (isset($_GET['p_id'])) {
                         <img src="/images/logo.png" alt="img" class="logo" width="2" height="2">
                     </li> -->
                         <li class="nav-item">
-                            <a style=" font-size: 25px color: #013;;" class="nav-link"> Welcome <?php echo $username; ?></a>
+                        <img style = "border-radius: 50%;" width = "150" height = "150" src = "Logo.png">
                         </li>
                         <?php
                         if ($p_id == 1) {

@@ -13,7 +13,7 @@ $username = $_SESSION['user_name'];
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active"> Welcome <?php echo $username; ?></a>
+                        <img style = "border-radius: 50%;" width = "150" height = "150" src = "Logo.png">
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " aria-current="page" href="/homepage.php">Home</a>
